@@ -2,6 +2,16 @@
 
 `TRIM.py` — trim **LLM harness stores only** (Cursor / Codex / Claude).
 
+Works on **bloated sessions / jsonl** for all three harnesses:
+
+| harness | what gets large | where |
+|--------|------------------|--------|
+| **Cursor** | chat `store.db` (protobuf blob graph) | `~/.cursor/chats/` |
+| **Codex** | session `rollout-*.jsonl` | `~/.codex/sessions/` |
+| **Claude** | project session `*.jsonl` | `~/.claude/projects/` |
+
+Also clears harness clutter (agent-tools, tracking DB age-trim, Claude file-history tip-keep) — never live `store.db` via `free`.
+
 Stdlib-only single file. No pip deps.
 
 ## Install

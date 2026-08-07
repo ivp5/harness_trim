@@ -1,6 +1,12 @@
 #!/usr/bin/env python3
 """TRIM — LLM harness store trim only (Cursor / Codex / Claude).
 
+Works on bloated agent sessions / jsonl for all three harnesses:
+  Cursor  — ~/.cursor/chats/*/store.db (protobuf blob graph; cut/settle)
+  Codex   — ~/.codex/sessions/**/rollout-*.jsonl (bloated transcript jsonl)
+  Claude  — ~/.claude/projects/**/*.jsonl (bloated session jsonl)
+plus harness clutter (agent-tools, tracking, Claude file-history tip-keep).
+
 Two organs, never fused:
   cut/settle  — rewrite live store; leave undo sibling beside it
   retire      — ONLY removal: shutil.move → ~/.Trash
@@ -3599,7 +3605,10 @@ def _resolve_chat(raw) -> Path:
     return p
 
 def print_help() -> None:
-    print("""trim — LLM harness only (Cursor / Codex / Claude stores)
+    print("""trim — LLM harness only (Cursor / Codex / Claude)
+
+  Shrinks bloated sessions / jsonl for all three:
+    Cursor chats (store.db) · Codex rollout-*.jsonl · Claude project *.jsonl
 
   Just run:  trim
 
@@ -3607,7 +3616,7 @@ def print_help() -> None:
     map      harness store sizes
     list     big sessions + last prompt
     free     clutter preview, then asks (never live store.db; Ctrl-C safe)
-    cut      shrink a chat — asks which + level (default: safe)
+    cut      shrink a chat/session — asks which + level (default: safe)
     check    self-test
     doctor   health check
 
@@ -4208,11 +4217,11 @@ def do_cut(path: str | Path | None = None, *, yes: bool = False,
     settle_chat(chat, recent_n)
 
 def cmd_menu() -> None:
-    print("TRIM — what do you want?")
+    print("TRIM — Cursor / Codex / Claude bloated sessions & jsonl")
     print("  1  map harness stores")
-    print("  2  list big chats")
+    print("  2  list big chats/sessions")
     print("  3  free harness clutter  (Ctrl-C safe; heartbeats every 5s)")
-    print("  4  shrink a chat")
+    print("  4  shrink a chat/session")
     print("  5  self-test")
     print("  6  health check")
     print("  q  quit")
