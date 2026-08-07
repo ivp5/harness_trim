@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.Python
+.venv/
+venv/
+tmp/
+evidence/
+*.bak
+.DS_Store
+.coverage
+.pytest_cache/
+# local research / migration — not the public product
+MECHANICS.json
+slim_from_bak.py

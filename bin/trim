@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Back-compat wrapper; prefer $HOME/bin/trim → TRIM.py symlink from install.sh.
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+exec python3 "$ROOT/TRIM.py" "$@"
